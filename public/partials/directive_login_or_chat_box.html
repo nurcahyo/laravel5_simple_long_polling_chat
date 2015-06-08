@@ -1,0 +1,17 @@
+<div class="container" id="test">
+	<form class="navbar-form" ng-if="!isGuest" ng-controller="HomeCtrl">
+	    	<TextArea ng-model="message" class="form-control" style="width:100%" id="chat" placeholder="Type your message then ctrl+enter to submit.."
+	    	ng-keyup="$event.keyCode == 13 && $event.ctrlKey == true && sendMessage(message)"
+	    	></TextArea>
+	</form>
+	<form class="navbar-form navbar-right" role="login" ng-if="isGuest"
+	 ng-submit="login(credentials)" ng-keyup="$event.keyCode == 13 && login(credentials)">
+		<div class="form-group">
+			<input type="email" class="form-control" placeholder="Email" ng-model="credentials.email">
+		</div>
+		<div class="form-group">
+			<input type="password" class="form-control" placeholder="Password" ng-model="credentials.password">	
+		</div>
+	    <button type="submit" class="btn btn-default">Login</button>
+	</form>
+</div>

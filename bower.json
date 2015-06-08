@@ -1,0 +1,22 @@
+{
+  "name": "Simple Chat",
+  "version": "0.0.1",
+  "authors": [
+    "nurcahyo <2light.hidayah@gmail.com>"
+  ],
+  "description": "Simple chat using Laravel 5, Bootstrap, AJAX, MySQL  and AngularJS.",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "angular": "1.2.x",
+    "angular-route": "1.2.x",
+    "angular-loader": "1.2.x",
+    "angular-resource": "1.2.x",
+    "angular-mocks": "~1.2.x",
+    "bootstrap": "~3.1.1",
+    "bootbox": "~4.4.0"
+  },
+  "ignore": [
+    "*"
+  ]
+}
