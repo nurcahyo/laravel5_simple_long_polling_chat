@@ -5,7 +5,7 @@
 	    	></TextArea>
 	</form>
 	<form class="navbar-form navbar-right" role="login" ng-if="isGuest"
-	 ng-submit="login(credentials)" ng-keyup="$event.keyCode == 13 && login(credentials)">
+	 ng-submit="authenticate(credentials)" ng-keyup="$event.keyCode == 13 && authenticate(credentials)">
 		<div class="form-group">
 			<input type="email" class="form-control" placeholder="Email" ng-model="credentials.email">
 		</div>

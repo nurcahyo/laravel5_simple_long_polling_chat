@@ -38,6 +38,19 @@
 	])
 	.run(['$rootScope', function(scope) {
 		scope.isGuest = true;
-		window.scope = scope;
+		scope.$user = {
+			id: 0,
+			email: null,
+			login: function(id, email) {
+				scope.isGuest = (id === 0);
+				scope.$user.id = id;
+				scope.$user.email = email;
+			},
+			logout: function() {
+				scope.isGuest = true;
+				scope.$user.id = 0;
+				scope.$user.email = null;
+			}
+		};
 	}]);
 }());

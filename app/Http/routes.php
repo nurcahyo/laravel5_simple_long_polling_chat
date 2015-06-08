@@ -21,5 +21,6 @@ Route::get('/', function() {
 
 Route::group( ['prefix' =>'api'], function() {
 	Route::controller('auth', 'AuthController');
-	Route::resource('message', 'MessageController');
+	Route::resource('message', 'MessageController', ['only' => ['index', 'store']]);
+	Route::get('message/subscribe', 'MessageController@subscribe');
 });

@@ -22,7 +22,7 @@ final class AuthController extends Controller {
 	{	
 		// Validate email and password submitted
 		// Email and password are mandatory
-		$v =$this->validate(Request::instance(), [
+		$this->validate(Request::instance(), [
 			'email' => 'required|email',
 			'password' => 'required'
 		]);

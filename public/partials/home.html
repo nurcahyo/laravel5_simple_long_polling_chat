@@ -1,7 +1,15 @@
 <div class="row">
-	<div id="users" class="col-md-4 pull-right user-box">
-	</div>
-	<div id="message" class="col-md-8 mesage-box">
-
+	<div id="message" class="col-md-12 mesage-box">
+		<button class="btn btn-default col-md-12" ng-if="!!nextPageUrl" ng-click="loadEarlier()">Load earlier</button>
+		<hr ng-if="!!nextPageUrl">
+		<div ng-repeat="m in messages | limitTo:totalDisplayed" >
+			<div class="{{ m.email === $user.email ? 'bg-success' : 'bg-info' }}"
+			style="margin-bottom: 10px; padding: 10px">
+				<strong class="author">{{ m.email }}</strong>
+				<p class="message" style="margin-top:10px">{{ m.message }}</p>
+				<small class="text-muted pull-right"><i class="small glyphicon glyphicon-time"></i> {{ m.created_at }}</small>
+				<div class="clearfix"></div>
+			</div>
+		</div>
 	</div>
 </div>
