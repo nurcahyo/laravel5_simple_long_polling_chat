@@ -5,12 +5,17 @@
 		.controller('HomeCtrl', [
 			'$scope', 'MessagingService',
 			function(scope, messageService) {
-				var messageQueryResponse, Message;
+				var messageQueryResponse, Message, now;
 				Message = messageService.resource;
+
+				// Loaded key dictionary this is list of blacklist subscribed long poll chat.
 				scope.loadedKeyMap = [];
+
+				// Set page title
 				scope.$parent.Page = {
 					title: 'Chatty'
 				};
+
 				// Online users
 				scope.users = [];
 
@@ -19,7 +24,10 @@
 				scope.nextPageUrl = null;
 				scope.currentPage = 1;
 				scope.totalDisplayed = 0;
-				var now = new Date();
+				now = new Date();
+
+				// Set first load time
+				// this field will be sent to query resources.
 				scope.firstLoadTime =  Math.floor((new Date(
 						now.getUTCFullYear(),
 					    now.getUTCMonth(),
@@ -28,16 +36,20 @@
 					    now.getUTCMinutes(), 
 					    now.getUTCSeconds()
 					)).getTime() / 1000);
+
+				// Initial chat message value
 				scope.chat = {
 					message: ''
 				};
 
+				// Handle scroll to latest chat
 				scope.scrollToBottom = function() {
 					setTimeout(function() {
 						window.scrollTo(0, window.document.body.scrollHeight);
 					},500);
 				};
 
+				// Handle load erlier messages
 				scope.loadEarlier = function() {
 					if (scope.currentPage === 1 || scope.nextPageUrl !== null) {
 						messageQueryResponse = Message.query({page: scope.currentPage, time_limit: scope.firstLoadTime}, function() {
@@ -53,6 +65,7 @@
 							});
 
 							scope.nextPageUrl = messageQueryResponse.next_page_url;
+							
 							if (scope.currentPage === 1) {
 								setTimeout(function() {
 									window.scrollTo(0, window.document.body.scrollHeight);
@@ -70,7 +83,7 @@
 				//Init first page
 				scope.loadEarlier();
 
-				// Initial message value
+
 				scope.sendMessage = function(message) {
 					var newMessage;
 					if (message.trim() !== "") {
@@ -78,7 +91,6 @@
 						newMessage.user_id= scope.$user.id;
 						newMessage.message= message;
 						newMessage.$publish(function(responseResource, responseHeader) {
-							window.console.log(responseResource);
 							newMessage.id = responseResource.id;
 							newMessage.created_at = responseResource.created_at;
 							scope.loadedKeyMap.push(newMessage.id);
@@ -105,7 +117,6 @@
 						time_limit: subscribeTimeLimit
 					})
 						.success(function(response, status) {
-							window.console.log(response);
 							// REfresh time when success
 							if (!!response.count && response.count > 0) {
 								now = new Date();
@@ -119,7 +130,6 @@
 								)).getTime() / 1000);
 
 								response.data.forEach(function(message) {
-									console.log(scope.loadedKeyMap.indexOf(message.id), message, scope.loadedKeyMap);
 									if (scope.loadedKeyMap.indexOf(message.id) === -1) {
 										scope.loadedKeyMap.push(message.id);
 										scope.messages.push(message);

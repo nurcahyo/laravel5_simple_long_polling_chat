@@ -88,10 +88,4 @@ final class AuthController extends Controller {
 		return $this->createJsonResponse(false, $messages, null);
 	}
 
-
-	// Just for debug purpose
-	public function getLogin() {
-		return $this->postLogin();
-	}
-
 }
