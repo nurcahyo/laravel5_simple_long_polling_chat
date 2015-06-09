@@ -30,11 +30,12 @@
 
 					return {
 						resource: $resource(endPoint+'message', {}, actions),
-						subscribe: function() {
+						subscribe: function(params) {
 							return $http({
 								method: 'GET',
 								url: endPoint+'message/subscribe',
-								timeout: 1000*10
+								timeout: 1000*20,
+								params: params
 							});
 						}
 					};

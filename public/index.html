@@ -28,10 +28,10 @@
 				</div>
 			</div>
 		</nav>
-		<div class="container" ng-cloak ng-view>
+		<div ng-cloak ng-view>
 		</div>
-		<footer class="navbar navbar-inverse navbar-fixed-bottom" ng-cloak role="main-footer">
-			<div login-or-chat-box></div>
+		<footer class="navbar navbar-inverse navbar-fixed-bottom" ng-cloak role="main-footer" ng-if="isGuest">
+			<div login-box></div>
 		</footer>
 		<script>
 			// include a third-party async loader library
