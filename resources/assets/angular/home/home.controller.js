@@ -49,9 +49,8 @@
 							
 							messageQueryResponse.data.forEach(function(message) {
 								scope.messages.unshift(message);
+								scope.totalDisplayed++;
 							});
-
-							scope.totalDisplayed = messageQueryResponse.to;
 
 							scope.nextPageUrl = messageQueryResponse.next_page_url;
 							if (scope.currentPage === 1) {
