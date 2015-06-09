@@ -19,6 +19,6 @@ Once we've done creating virtualhost don't forget to restart webserver.
 ####Configure Laravel5 Project
 - Create `.env` file in root project folder, we can copy it from `.env.example`
 - Configure `.env` file.
-- Run `composer install` via console.
-- Run migration via console `php artisan migrate:install`
+- Run `composer install` via console/CLI.
+- Run migration via console/CLI `php artisan migrate:install`
 - Go to frontend / web client host via web browser
